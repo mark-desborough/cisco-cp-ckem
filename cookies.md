@@ -152,3 +152,30 @@ Device Descriptor:
 Device Status:     0x0001
   Self Powered
 ```
+
+## The Reset Sequence
+
+This reset sequence worked on my `cp-ckem-c=` model (I couldn't find anything to describe the sequence for it). I am unable to find the reset sequence for the dual-lcd versions.
+
+```
+Reset the Single LCD Screen Key Expansion Module (8800 only)
+
+If you are having technical difficulties with your Cisco IP Phone 8800 Key Expansion Module, you can reset the module to the factory default settings.
+Procedure
+
+Step 1: Restart the key expansion module by disconnecting the power source, waiting a few seconds, and then reconnecting it.
+
+Step 2: As the key expansion module powers up, press and hold Page 1. As the LCD screen turns white, continue pressing Page 1 for at least one second.
+
+Step 3: Release Page 1. The LEDs turn red.
+
+Step 4: Immediately press Page 2 and continue pressing Page 2 for at least one second.
+
+Step 5: Release Page 2. The LEDs turn amber.
+
+Step 6: Press Lines 5, 14, 1, 18, 10, and 9 in sequence.
+
+The LCD screen turns blue. A spinning icon is displayed in the center of the screen.
+
+The key expansion module resets.
+```
