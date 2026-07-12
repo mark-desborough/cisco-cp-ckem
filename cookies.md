@@ -179,3 +179,61 @@ The LCD screen turns blue. A spinning icon is displayed in the center of the scr
 
 The key expansion module resets.
 ```
+
+## wkem vs ckem firmware files: 
+binwalk -e on wkem.14-0-1-0001-135.bin comes up with a squashfs. The squashfs is a small linux install for the kernel `3.4.110-rt140-v1.3.5-rc3`
+modules compiled for `3.4.110-rt140-v1.3.5-rc3+ preempt mod_unload ARMv5 p2v8`
+It has 2 modules. It appears `g_serial.ko` manages a serial USB device. While `g_kem.ko` references: 
+```
+pxa25x_udc
+usb ep addr 0x%x
+failed to override string ID
+composite
+%s: Unexpected call
+unconfigured
+%s config #%d: %s
+%s: Delayed status not supported for w_length != 0
+net2280
+ep-e
+ep-f
+goku_udc
+ep3-bulk
+ep2-bulk
+bInterfaceNumber: id %d
+%s: can't autoconfigure on %s
+Support usb high speed hardware.
+&kem->lock
+&kem->write_queue
+&kem->read_queue
+Error: kem cdev_add failed
+%s%d
+%s %s with %s
+userspace failed to provide iSerialNumber
+%s ready
+iInterface, iConfiguration: id %d
+kem device setup error!
+dummy_udc
+omap_udc
+pxa27x_udc
+s3c2410_udc
+at91_udc
+imx_udc
+musb-hdrc
+atmel_usba_udc
+fsl-usb2-udc
+amd5536udc
+m66592_udc
+fsl_qe_udc
+ci13xxx_pci
+langwell_udc
+r8a66597_udc
+s3c-hsotg
+pch_udc
+ci13xxx_msm
+renesas_usbhs_udc
+s3c-hsudc
+net2272
+dwc3-gadget
+%s, version: FOX KEM 201609
+```
+
