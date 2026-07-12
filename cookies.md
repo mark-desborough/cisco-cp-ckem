@@ -1,7 +1,7 @@
 # The Cookie Crumbs
 
-Cisco signature stripped from the `cmterm-88xx-sip.14-0-1-0001-135.k3.cop.sgn`
-something like the first 420 bytes stripped off with dd. 
+Cisco signature stripped from the `cmterm-88xx-sip.14-0-1-0001-135.k3.cop.sgn` the multi phone firmware (not encrypted with sebn filesystems):
+With something like the first 420 bytes stripped off with dd. 
 
 then renamed and extracted like a tar.gz file: 
 `tar -xzvf cmterm-88xx-sip.14-0-1-0001-135.k3.cop.tar.gz`
@@ -9,7 +9,7 @@ then renamed and extracted like a tar.gz file:
 rootfs from the binary 
 `mount rootfs88xx.14-0-1-0001-135.sbn /mnt/rootfs -t squashfs -o loop`
 
-files under /etc/ (I assume this is the phone support list): 
+files under `etc/` (I assume this is the phone support list): 
 - 8861-capabilities
 - 8851NR-capabilities
 - 8851-capabilities
@@ -17,10 +17,56 @@ files under /etc/ (I assume this is the phone support list):
 - 8811-capabilities
 
 From the kem kernel module (`lib/modules/3.0.31/extra/lkem.ko` and `lib/modules/3.0.31/extra/lkem.ko`):
-- alias usb:v1836p1235d*dc*dsc*dp*ic*isc*ip* lkem
-- alias usb:v0698pE8E9d*dc*dsc*dp*ic*isc*ip* lkem
+- `alias usb:v1836p1235d*dc*dsc*dp*ic*isc*ip* lkem`
+- `alias usb:v0698pE8E9d*dc*dsc*dp*ic*isc*ip* lkem`
 
 # Debug Trace from cisco forum: 
+
+Cisco 8851 phone running SIP firmware sip88xx.14-3-1-0201-246, with a Key Expansion Module (CP-8800-A-KEM) attached.
+
+```
+DEBUG>  dmesg -w
+...
+[34275.093994] lkem: lkem_intr_in_callback: nonzero intr-in status received: -110
+[34275.093994] lkem: lkem_intr_in_callback: usb_submit_urb(intr-in) failed (-19)
+[34275.095672] usb 4-1: USB disconnect, device number 123
+[34275.095703] usb 4-1.2: USB disconnect, device number 124
+[34275.096038] /home/slbuild/master/ip_sl/infra/drivers/bigeasy/lkem/lkem_driver.c: LKEM0 now disconnected
+[34277.755523] Indeed it is in host mode hprt0 = 00021501
+[34277.935455] usb 4-1: new full speed USB device number 125 using dwc_otg
+[34277.936370] INFO:: dwc_otg_hcd_handle_hc_n_intr: (chhltd,0) no qtd for channel 11, urb=  (null)
+[34277.936645] Indeed it is in host mode hprt0 = 00021501
+[34278.137176] usb 4-1: not running at top speed; connect to a high speed hub
+[34278.141296] usb 4-1: New USB device found, idVendor=05e3, idProduct=0608
+[34278.141326] usb 4-1: New USB device strings: Mfr=0, Product=1, 
+[34278.141357] usb 4-1: Product: USB2.0 Hub
+[34278.141876] usb 4-1: cisco - usb product=USB2.0 Hub
+[34278.141906] usb 4-1: cisco - usb dev_name=4-1 config_num=1
+[34278.141967] usb 4-1: cisco - product=USB2.0 Hub
+[34278.141998] usb 4-1: cisco - other device (class=9)
+[34278.142028] usb 4-1: cisco - hub
+[34278.142059] usb 4-1: cisco - enable
+[34278.143493] hub 4-1:1.0: USB hub found
+[34278.144287] hub 4-1:1.0: 4 ports detected
+[34289.895294] usb 4-1.2: new full speed USB device number 126 using dwc_otg
+[34290.001159] usb 4-1.2: New USB device found, idVendor=1836, idProduct=1235
+[34290.001159] usb 4-1.2: New USB device strings: Mfr=1, Product=2, 
+[34290.001190] usb 4-1.2: Product: KEM
+[34290.001190] usb 4-1.2: Manufacturer: FOX
+[34290.001190] usb 4-1.2: SerialNumber: 3
+[34290.001525] usb 4-1.2: cisco - usb product=KEM
+[34290.001525] usb 4-1.2: cisco - usb dev_name=4-1.2 config_num=1
+[34290.001556] usb 4-1.2: cisco - product=KEM
+[34290.001556] usb 4-1.2: cisco - other device (class=255)
+[34290.001556] usb 4-1.2: cisco - disable
+[34290.015289] /home/slbuild/master/ip_sl/infra/drivers/bigeasy/lkem/lkem_driver.c: USB lkem device now attached to USBlkem-0
+[34303.321777] lkem: lkem_intr_in_callback: nonzero intr-in status received: -110
+[34303.321777] lkem: lkem_intr_in_callback: usb_submit_urb(intr-in) failed (-19)
+[34303.343475] usb 4-1: USB disconnect, device umber 125
+[34303.343505] usb 4-1.2: USB disconnect, device number 126
+[34303.343811] /home/slbuild/master/ip_sl/infra/drivers/bigeasy/lkem/lkem_driver.c: LKEM0 now disconnected
+DEBUG> 
+```
 
 ```
 6869 DEB Apr 29 21:12:40.411337 (468-686) DMAN-handleNewDevice(): Got VendorID= 0x1836 ProductID= 0x1235
