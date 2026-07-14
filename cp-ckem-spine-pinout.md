@@ -1,6 +1,6 @@
 # Pinout for the CP-CKEM-C= Spine
 
-The pin numbering seems reversed on the spine itself (internally visible).
+The pin numbering seems reversed on the spine itself (internally visible). These spines were not intentionally damaged. They had a hard life in a bin before I got to them.
 The phone side matches the kem for numbering. The phone also includes a label for pin 9 and 10 (both extra legs on the shield).
 
 The raised pads on the spine are fairly easy to lift off. I attempted soldering some wires onto them and they pulled off with (mostly) minimal force.
