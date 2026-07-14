@@ -1,6 +1,7 @@
 # Pinout for the CP-CKEM-C= Spine
 
 The pin numbering seems reversed on the spine itself (internally visible). These spines were not intentionally damaged. They had a hard life in a bin before I got to them.
+
 The phone side matches the kem for numbering. The phone also includes a label for pin 9 and 10 (both extra legs on the shield).
 
 The raised pads on the spine are fairly easy to lift off. I attempted soldering some wires onto them and they pulled off with (mostly) minimal force.
@@ -11,6 +12,8 @@ When booting the phone supplies 36v to the pins 1 (negative) and 2 (positive). U
 
 ## Kem
 The pins on the KEM numbering are as follows:
+
+![cp-ckem-c= side with pinout](pictures/kem_side_with_pinout.png)
 
 ```
 8) USB 5v+ (VBUS)
@@ -27,7 +30,11 @@ The pins on the KEM numbering are as follows:
 
 ## Spine
 The spine has the reverse numbering on the pins. They bridge across with a pair of capacitors. I believe the larger capacitors share an isolated ground.
+
 The USB component of the spine is purely for the SHIELD bridge. It does not have any pins inside the connector, and the KEM side is does not have a female jack. 
+
+![cp-ckem-c= with plastic-case still attached](pictures/kem_spine_with_case_on.png)
+![cp-ckem-c= with plastic-case removed](pictures/kem_spine_with_broken_plastic.png)
 
 ```
 1 <--- small brown capacitor ----  small brown capacitor ---> 1
